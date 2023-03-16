@@ -9,6 +9,5 @@ class ImageGenerateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_generate)
 
-
     }
 }

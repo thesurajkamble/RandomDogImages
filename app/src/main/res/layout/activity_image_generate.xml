@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ImageGenerateActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generate Dog Images"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/iv_dogImg" />
+
     <ImageView
         android:id="@+id/iv_dogImg"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="52dp"
         android:src="@drawable/dog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -20,14 +29,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate"
-        android:padding="10dp"
-        android:textSize="10dp"
         android:background="@drawable/rounded_corner_style"
+        android:text="Generate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_dogImg"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintVertical_bias="0.23" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

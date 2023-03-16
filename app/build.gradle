@@ -21,6 +21,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    packagingOptions {
+        pickFirst  '**'
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,17 +33,6 @@ android {
         }
     }
 
-    packagingOptions {
-        exclude("META-INF/DEPENDENCIES")
-        exclude("META-INF/LICENSE")
-        exclude("META-INF/LICENSE.txt")
-        exclude("META-INF/license.txt")
-        exclude("META-INF/NOTICE")
-        exclude("META-INF/NOTICE.txt")
-        exclude("META-INF/notice.txt")
-        exclude("META-INF/ASL2.0")
-        exclude("META-INF/*.kotlin_module")
-    }
 
     buildFeatures {
         viewBinding true
@@ -51,8 +45,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-
 }
 
 dependencies {
