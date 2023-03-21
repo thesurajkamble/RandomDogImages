@@ -1,6 +1,5 @@
 package com.kamblesuraj.dogimagegenerator.di
 
-import com.kamblesuraj.dogimagegenerator.BuildConfig
 import com.kamblesuraj.dogimagegenerator.data.api.DogApiService
 import dagger.Module
 import dagger.Provides
@@ -17,7 +16,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(com.kamblesuraj.dogimagegenerator.BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -25,4 +24,5 @@ object AppModule {
     @Singleton
     fun provideApi(retrofit: Retrofit): DogApiService =
         retrofit.create(DogApiService::class.java)
+
 }

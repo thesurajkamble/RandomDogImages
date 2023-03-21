@@ -1,11 +1,11 @@
-package com.kamblesuraj.dogimagegenerator.data.models
+package com.kamblesuraj.dogimagegenerator.data.model
 
 
 import com.google.gson.annotations.SerializedName
 
-data class DataResponse(
+data class RandomDogsResponse(
     @SerializedName("message")
-    val message: String,
+    val url: String,
     @SerializedName("status")
     val status: String
 )

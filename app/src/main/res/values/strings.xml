@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DogImageGenerator</string>
+    <string name="title_activity_main_compose">MainActivityCompose</string>
+    <string name="title_activity_generate_images">GenerateImagesActivity</string>
 </resources>
