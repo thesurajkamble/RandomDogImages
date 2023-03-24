@@ -12,7 +12,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.*
 import com.google.android.material.snackbar.Snackbar
 import com.kamblesuraj.dogimagegenerator.databinding.ActivityImageGenerateBinding
-import com.kamblesuraj.dogimagegenerator.viewmodel.MainViewmodel
+import com.kamblesuraj.dogimagegenerator.presentation.viewmodel.MainViewmodel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,23 +28,23 @@ class ImageGenerateActivity : AppCompatActivity() {
         binding = ActivityImageGenerateBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnGenerateDogs.setOnClickListener {
-//            mainViewmodel.getRandomDogImages()
+            mainViewmodel.getRandomDogImages()
         }
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                mainViewmodel.uiState.collect { event ->
-                    when (event) {
-                        is MainViewmodel.UiStateEvents.Loading -> {
-                            binding.progressBar.isVisible = true
-                        }
-                        is MainViewmodel.UiStateEvents.Failure -> {
-                            binding.txtRes.text = "Something went wrong"
-                        }
-                        is MainViewmodel.UiStateEvents.Success -> {
-                            binding.txtRes.text = event.resultText
-                        }
-                        else -> Unit
+            mainViewmodel.uiState.collect { event ->
+                when (event) {
+                    is MainViewmodel.UiStateEvents.Loading -> {
+                        binding.progressBar.isVisible = true
                     }
+                    is MainViewmodel.UiStateEvents.Failure -> {
+                        binding.txtRes.text = "Something went wrong"
+                        binding.progressBar.isVisible = false
+                    }
+                    is MainViewmodel.UiStateEvents.Success -> {
+                        binding.txtRes.text = event.resultText
+                        binding.progressBar.isVisible = false
+                    }
+                    else -> Unit
                 }
             }
         }

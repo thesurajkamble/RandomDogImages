@@ -1,9 +1,13 @@
-package com.kamblesuraj.dogimagegenerator.di
+package com.kamblesuraj.dogimagegenerator.data.di
 
+import android.content.Context
+import androidx.room.Room
 import com.kamblesuraj.dogimagegenerator.data.api.DogApiService
+import com.kamblesuraj.dogimagegenerator.data.local.DogsDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,5 +28,20 @@ object AppModule {
     @Singleton
     fun provideApi(retrofit: Retrofit): DogApiService =
         retrofit.create(DogApiService::class.java)
+
+
+    @Singleton
+    @Provides
+    fun provideDatabase(
+        @ApplicationContext app: Context
+    ) = Room.databaseBuilder(
+        app,
+        DogsDatabase::class.java,
+        "randomDogs_table"
+    ).build()
+
+    @Singleton
+    @Provides
+    fun provideDao(db: DogsDatabase) = db.getDogsDao()
 
 }
