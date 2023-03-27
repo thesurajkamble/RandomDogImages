@@ -32,9 +32,23 @@ class MainViewmodel @Inject constructor(
                 is Resource.Error -> _uiState.value = UiStateEvents.Failure(dogsResponse.message!!)
                 is Resource.Success -> {
                     _uiState.value = UiStateEvents.Success(dogsResponse.data?.imageUrl.toString())
-                    val log = dogsResponse.data?.imageUrl.toString()
-                    Log.d("VIEWMODEL_TAG",log)
+//                    val log = dogsResponse.data?.imageUrl.toString()
+//                    Log.d("VIEWMODEL_TAG",log)
                 }
+            }
+        }
+    }
+
+    fun getAllDogs() {
+        _uiState.value = UiStateEvents.Empty
+        viewModelScope.launch(Dispatchers.IO) {
+            _uiState.value = UiStateEvents.Loading
+            when (val res = randomDogsRepository.getAllDogs()) {
+                is Resource.Error -> _uiState.value = UiStateEvents.Failure(res.message!!)
+                is Resource.Success -> {
+                    UiStateEvents.Success(res.data.toString())
+                }
+                else -> Unit
             }
         }
     }

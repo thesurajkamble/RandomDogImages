@@ -1,4 +1,4 @@
-package com.kamblesuraj.dogimagegenerator.common.utils.constants
+package com.kamblesuraj.dogimagegenerator.common.utils
 
 object Constants {
     const val UNKNOWN_ERROR = "unknown exeption"

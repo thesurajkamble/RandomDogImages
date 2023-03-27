@@ -2,6 +2,7 @@ package com.kamblesuraj.dogimagegenerator.data.di
 
 import android.content.Context
 import androidx.room.Room
+import coil.Coil
 import com.kamblesuraj.dogimagegenerator.data.api.DogApiService
 import com.kamblesuraj.dogimagegenerator.data.local.DogsDatabase
 import dagger.Module
@@ -43,5 +44,6 @@ object AppModule {
     @Singleton
     @Provides
     fun provideDao(db: DogsDatabase) = db.getDogsDao()
+
 
 }

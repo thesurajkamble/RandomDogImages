@@ -1,5 +1,6 @@
 package com.kamblesuraj.dogimagegenerator.common.data
 
+import android.util.Log
 import com.kamblesuraj.dogimagegenerator.common.exception.UnknownException
 import com.kamblesuraj.dogimagegenerator.domain.mapper.Mapper
 import retrofit2.HttpException
@@ -12,7 +13,8 @@ abstract class BaseRepository {
     ): Resource<S> {
         try {
             val result = api()
-            if (result.isSuccessful) {
+            Log.d("MY_TAG_", result.toString())
+            if (result.isSuccessful && result.body() != null) {
                 result.body()?.let { body ->
                     return Resource.Success(mapper.map(body))
                 }
